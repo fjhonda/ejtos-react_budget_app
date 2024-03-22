@@ -7,8 +7,10 @@ const AllocationForm = () => {
     const [currentFormValues, setCurrentFormValues] = useState({
         modValue: 0,
         department: state.expenses[0].name,
-        allocationType: "ADD",
+        allocationType: "ADD_EXPENSE",
     })
+
+    console.log('current state', currentFormValues)
 
     return (
             <div className='container'>
@@ -33,8 +35,8 @@ const AllocationForm = () => {
                             ...currentFormValues,
                             allocationType: e.target.value,
                         })}>
-                            <option value="ADD">Add</option>
-                            <option value="MINUS">Minus</option>
+                            <option value="ADD_EXPENSE">Add</option>
+                            <option value="RED_EXPENSE">Reduce</option>
                         </select>
                     </div>
                     <div className='col'>
@@ -45,7 +47,18 @@ const AllocationForm = () => {
                         })}/>   
                     </div>
                     <div className='col'>
-                        <button className="btn btn-primary">Save</button>
+                        <button 
+                            className="btn btn-primary"
+                            onClick={()=> state.dispatch({
+                                type: currentFormValues.allocationType,
+                                payload: {
+                                    name: currentFormValues.department,
+                                    cost: currentFormValues.modValue,
+                                }
+                            })}
+                        >
+                            Save
+                        </button>
                     </div>
                 </div>
             </div>

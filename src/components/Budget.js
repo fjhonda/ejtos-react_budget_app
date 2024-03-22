@@ -11,7 +11,14 @@ const Budget = () => {
             <input 
                 type="number" 
                 value={state.budget} 
-                onChange={(e)=> state.dispatch({type: 'SET_BUDGET', payload: parseInt(e.target.value)})} 
+                step={10}
+                onChange={(e)=> {
+                    const newBudget=parseInt(e.target.value)
+                    if (newBudget<20001)
+                        state.dispatch({type: 'SET_BUDGET', payload: parseInt(e.target.value)})
+                    else
+                        alert('You cannot exceed the budget limit of 20,000')
+                }} 
             />
         </div>
     )

@@ -13,7 +13,7 @@ const Remaining = () => {
     });
 
     const totalRemaining=state.budget-totalExpenses;
-    const classes = 'container '+ (totalRemaining>0 ? 'text-bg-success p-3' : 'text-bg-danger p-3')
+    const classes = 'container px-6 '+ (totalRemaining>0 ? 'text-bg-success p-3' : 'text-bg-danger p-3')
 
     return (
         <div className={classes}>

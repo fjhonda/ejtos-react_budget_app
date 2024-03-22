@@ -10,8 +10,6 @@ const AllocationForm = () => {
         allocationType: "ADD_EXPENSE",
     })
 
-    console.log('current state', currentFormValues)
-
     return (
             <div className='container'>
                 <h3>Change allocation</h3>
@@ -41,10 +39,16 @@ const AllocationForm = () => {
                     </div>
                     <div className='col'>
                         {state.currency}
-                        <input type="number" value={currentFormValues.modValue} onChange={(e) => setCurrentFormValues({
-                            ...currentFormValues,
-                            modValue: parseInt(e.target.value)
-                        })}/>   
+                        <input type="number" value={currentFormValues.modValue} onChange={(e) => {
+                            const newExpenseValue= parseInt(e.target.value)
+                            setCurrentFormValues({
+                                ...currentFormValues,
+                                modValue: newExpenseValue
+                            })
+                            if (state.budget-newExpenseValue < 0)
+                                setTimeout(()=> alert('The value cannot exceed the remaining funds'), 1000)
+                        }
+                        }/>   
                     </div>
                     <div className='col'>
                         <button 

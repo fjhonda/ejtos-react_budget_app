@@ -11,7 +11,7 @@ const ExpenseList = () =>{
     return (
         <div className='container'>
             <h3>Allocation</h3>
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                     <th scope="col">Department</th>
@@ -23,7 +23,7 @@ const ExpenseList = () =>{
                 <tbody>
                     {
                         state.expenses.map( e => (
-                            <ExpenseItem {...e} />
+                            <ExpenseItem key={e.id} {...e} />
                         ))
                     }
                     
